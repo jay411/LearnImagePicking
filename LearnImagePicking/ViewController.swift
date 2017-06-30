@@ -75,7 +75,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
             textFieldOne.isHidden=false
             textFieldTwo.isHidden=false
         }
-        
+        print("subscribing to keyboard")
         subscribeToKeyboardNotifications()
     }
     
@@ -140,6 +140,8 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     
     
     func subscribeToKeyboardNotifications(){
+        print("subscribing to keyboard inside subscribe func")
+
         NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
@@ -150,11 +152,11 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     
     
     func keyboardWillShow(_ notification:Notification){
-        print("keyboardwillShow called ")
+        print("\n keyboardwillShow called")
         view.frame.origin.y -= getKeyboardHeight(notification)
     }
     func keyboardWillHide(_ notification:Notification){
-        view.frame.origin.y+=getKeyboardHeight(notification)
+        view.frame.origin.y=0
     }
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         print("KEYBOARD height called")
