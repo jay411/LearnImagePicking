@@ -150,7 +150,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     
     
     func keyboardWillShow(_ notification:Notification){
-        print("keyboardwillShow called x")
+        print("keyboardwillShow called ")
         view.frame.origin.y -= getKeyboardHeight(notification)
     }
     func keyboardWillHide(_ notification:Notification){
