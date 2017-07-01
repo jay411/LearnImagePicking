@@ -123,10 +123,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("Cancel called")
         self.dismiss(animated: true, completion: nil)
-//        imagePicker.image=generateMemedImage()
-//        let activityItems=[imagePicker.image]
-//        let shareVC=UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-//        self.present(shareVC, animated: true, completion: nil)
+
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image=info[UIImagePickerControllerOriginalImage] as? UIImage{
@@ -153,10 +150,19 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     
     func keyboardWillShow(_ notification:Notification){
         print("\n keyboardwillShow called")
+        if (textFieldOne.isFirstResponder){
+            return
+        }
+        
         view.frame.origin.y -= getKeyboardHeight(notification)
+        
     }
     func keyboardWillHide(_ notification:Notification){
+        if (textFieldTwo.isFirstResponder){
+            
         view.frame.origin.y=0
+        }
+        
     }
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         print("KEYBOARD height called")
