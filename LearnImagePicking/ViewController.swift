@@ -150,11 +150,10 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     
     func keyboardWillShow(_ notification:Notification){
         print("\n keyboardwillShow called")
-        if (textFieldOne.isFirstResponder){
-            return
+        if (textFieldTwo.isFirstResponder && view.frame.origin.y == 0){
+            view.frame.origin.y -= getKeyboardHeight(notification)
         }
         
-        view.frame.origin.y -= getKeyboardHeight(notification)
         
     }
     func keyboardWillHide(_ notification:Notification){
@@ -191,6 +190,8 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         if (self.textFieldTwo.isFirstResponder) {
             self.textFieldTwo.resignFirstResponder()
         }
+        view.frame.origin.y=0
+        
     }
 }
 
